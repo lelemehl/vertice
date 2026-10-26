@@ -1895,44 +1895,38 @@ loadLocations();
 })();
 
 // ==========================================
-// VÉRTICE — IMAGENS DOS PAGAMENTOS FICTÍCIOS
-// Cole no FINAL do script.js.
-// Não utiliza arquivos de imagem externos.
+// VÉRTICE — PAGAMENTOS DEMONSTRATIVOS
+// Cole este bloco completo no FINAL do script.js.
 // ==========================================
 
 (() => {
-  const formulario = document.querySelector("#checkoutForm");
-  const camposPagamento = document.querySelector("#paymentFields");
+  const form = document.querySelector("#checkoutForm");
+  const campos = document.querySelector("#paymentFields");
   const resultado = document.querySelector("#orderResult");
   const janela = document.querySelector("#checkoutDialog");
 
-  if (
-    !formulario ||
-    !camposPagamento ||
-    !resultado ||
-    !janela
-  ) {
+  if (!form || !campos || !resultado || !janela) {
     return;
   }
 
   // ========================================
-  // ESTILO DAS IMAGENS
+  // ESTILOS
   // ========================================
 
-  const estiloPagamento = document.createElement("style");
+  const estilo = document.createElement("style");
 
-  estiloPagamento.textContent = `
-    .vertice-pagamento-demo {
+  estilo.textContent = `
+    .pagamento-vertice {
       margin: 20px 0;
       padding: 20px;
-      border: 1px solid #dedede;
+      border: 1px solid #dddddd;
       border-radius: 12px;
       background: #ffffff;
       color: #171717;
       text-align: center;
     }
 
-    .vertice-pagamento-demo img {
+    .pagamento-vertice img {
       display: block;
       width: 100%;
       max-width: 440px;
@@ -1940,38 +1934,39 @@ loadLocations();
       margin: 0 auto;
     }
 
-    .vertice-pagamento-demo p {
-      margin: 14px 0 0;
-      font-size: 12px;
-      line-height: 1.6;
+    .pagamento-vertice h3 {
+      margin: 0 0 15px;
+      font-size: 18px;
     }
 
-    .vertice-aviso-demo {
-      padding: 14px;
-      margin: 16px 0;
-      border-left: 4px solid #171717;
-      background: #f1f1ed;
+    .pagamento-vertice p {
+      margin: 15px 0 0;
       font-size: 12px;
       line-height: 1.7;
     }
 
-    .vertice-resultado-demo h3 {
-      margin-top: 20px;
+    .aviso-pagamento-vertice {
+      margin: 16px 0;
+      padding: 14px;
+      background: #f1f1ed;
+      border-left: 4px solid #171717;
+      font-size: 12px;
+      line-height: 1.7;
     }
   `;
 
-  document.head.appendChild(estiloPagamento);
+  document.head.appendChild(estilo);
 
   // ========================================
   // TRANSFORMA SVG EM IMAGEM
   // ========================================
 
-  function imagemSVG(codigo, descricao) {
+  function converterSVG(svg, descricao) {
     const imagem = document.createElement("img");
 
     imagem.src =
       "data:image/svg+xml;charset=utf-8," +
-      encodeURIComponent(codigo);
+      encodeURIComponent(svg);
 
     imagem.alt = descricao;
 
@@ -1979,262 +1974,213 @@ loadLocations();
   }
 
   // ========================================
-  // PIX FICTÍCIO
-  // O desenho não contém chave ou pagamento.
+  // PIX — QR CODE COM MENSAGEM DE TEXTO
+  //
+  // Mensagem codificada:
+  //
+  // VÉRTICE — PIX FICTÍCIO
+  //
+  // Este QR Code faz parte de um projeto
+  // escolar demonstrativo.
+  // Nenhum pagamento será realizado.
+  // Não contém chave Pix nem dados bancários.
+  //
+  // Obrigado por conhecer a VÉRTICE!
   // ========================================
 
-  function criarPixFicticio() {
-    const tamanho = 21;
-    const celula = 10;
-    const margemX = 115;
-    const margemY = 100;
+  function criarPix() {
+    const tamanho = 65;
+
+    const linhas = [
+      "0",
+      "0",
+      "0",
+      "0",
+      "1fdd3b55f9efe7f0",
+      "104154e31d8b2410",
+      "1745fb1e0f24e5d0",
+      "17544e77b0f2a5d0",
+      "1752437fe26fa5d0",
+      "105effdc45734410",
+      "1fd55555555557f0",
+      "13f684468de000",
+      "11776bcfc3ed0f90",
+      "1027c911cb4ff680",
+      "2f014cfcf75a660",
+      "15b02c4bf0017ea0",
+      "c671b331f2d0230",
+      "aa64b9dd06f9e90",
+      "1556da48de5c8560",
+      "1586b6a2913dd820",
+      "dd404969fed0e20",
+      "cad0d7e3a6db620",
+      "d7c3c72c9602320",
+      "1219adfabf29e110",
+      "bd0c7ccd5e78a30",
+      "18a2247f4b4d95e0",
+      "17d6825c0ab70fe0",
+      "1d9f3b2a0fa2ce70",
+      "134238a2f3ed2a70",
+      "1a37bc3b5a2fb420",
+      "11f6554fca1c9fe0",
+      "151af4645aedd190",
+      "558c9cd5b057510",
+      "1516f9f46af671a0",
+      "1ff31fa7fe4fffe0",
+      "61b1d00d8aa5590",
+      "7428d96d7698150",
+      "1a35736af35f35b0",
+      "19c98c393feca0f0",
+      "799f05bd3bdd700",
+      "9c8235273e50db0",
+      "41a6314e9548ec0",
+      "64dd875085eaa60",
+      "182d3e73f7a94c10",
+      "e527dc558814930",
+      "d14810ada1d8660",
+      "1ed9b11e2a3eab60",
+      "13a2fd635d25f3c0",
+      "16f4f349b723c670",
+      "160fc23e1b9fbe40",
+      "14f6bfbf6806a9a0",
+      "1f092c2d9e29d620",
+      "5b6687dfe51fa0",
+      "1fccf45b4c5120",
+      "1fdb73154d5f75e0",
+      "1044cd1c5a21f100",
+      "175a7bb7d4af1f70",
+      "17451b1d5a3d89f0",
+      "1748a18d8e060180",
+      "104ce6653f39e940",
+      "1fdb171fdb659050",
+      "0",
+      "0",
+      "0",
+      "0"
+    ];
 
     let desenho = "";
 
-    function estaNoMarcador(x, y) {
-      return (
-        (x < 7 && y < 7) ||
-        (x >= 14 && y < 7) ||
-        (x < 7 && y >= 14)
-      );
-    }
+    linhas.forEach((linha, y) => {
+      const pixels = BigInt("0x" + linha)
+        .toString(2)
+        .padStart(tamanho, "0");
 
-    // Padrão decorativo, sem conteúdo de pagamento.
-    for (let y = 0; y < tamanho; y++) {
       for (let x = 0; x < tamanho; x++) {
-        if (estaNoMarcador(x, y)) continue;
-
-        const pintar =
-          ((x * 17 + y * 13 + x * y) % 7) < 3;
-
-        if (pintar) {
-          desenho += `
-            <rect
-              x="${margemX + x * celula}"
-              y="${margemY + y * celula}"
-              width="${celula}"
-              height="${celula}"
-              fill="#111111"
-            />
-          `;
+        if (pixels[x] === "1") {
+          desenho += `M${x} ${y}h1v1h-1z`;
         }
       }
-    }
-
-    function marcador(x, y) {
-      return `
-        <rect
-          x="${x}"
-          y="${y}"
-          width="70"
-          height="70"
-          fill="#111111"
-        />
-        <rect
-          x="${x + 10}"
-          y="${y + 10}"
-          width="50"
-          height="50"
-          fill="#ffffff"
-        />
-        <rect
-          x="${x + 20}"
-          y="${y + 20}"
-          width="30"
-          height="30"
-          fill="#111111"
-        />
-      `;
-    }
+    });
 
     const svg = `
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="440"
-        height="410"
-        viewBox="0 0 440 410"
+        viewBox="0 0 ${tamanho} ${tamanho}"
+        width="390"
+        height="390"
+        shape-rendering="crispEdges"
       >
         <rect
-          width="440"
-          height="410"
-          rx="16"
-          fill="#ffffff"
+          width="${tamanho}"
+          height="${tamanho}"
+          fill="white"
         />
 
-        <rect
-          width="440"
-          height="65"
-          rx="16"
-          fill="#151515"
+        <path
+          d="${desenho}"
+          fill="black"
         />
-
-        <text
-          x="220"
-          y="42"
-          text-anchor="middle"
-          font-family="Arial, sans-serif"
-          font-size="24"
-          font-weight="700"
-          fill="#ffffff"
-        >
-          VÉRTICE / PIX FICTÍCIO
-        </text>
-
-        ${desenho}
-
-        ${marcador(115, 100)}
-        ${marcador(255, 100)}
-        ${marcador(115, 240)}
-
-        <rect
-          x="105"
-          y="180"
-          width="230"
-          height="60"
-          rx="8"
-          fill="#d9ff50"
-        />
-
-        <text
-          x="220"
-          y="222"
-          text-anchor="middle"
-          font-family="Arial, sans-serif"
-          font-size="42"
-          font-weight="900"
-          fill="#111111"
-        >
-          DEMO
-        </text>
-
-        <text
-          x="220"
-          y="355"
-          text-anchor="middle"
-          font-family="Arial, sans-serif"
-          font-size="17"
-          font-weight="700"
-          fill="#111111"
-        >
-          SEM VALOR DE PAGAMENTO
-        </text>
-
-        <text
-          x="220"
-          y="382"
-          text-anchor="middle"
-          font-family="Arial, sans-serif"
-          font-size="12"
-          fill="#666666"
-        >
-          Desenho ilustrativo. Não é um código Pix.
-        </text>
       </svg>
     `;
 
-    return imagemSVG(
+    const imagem = converterSVG(
       svg,
-      "Pix fictício da VÉRTICE, sem chave ou valor de pagamento."
+      "QR Code de texto: VÉRTICE, projeto escolar sem pagamento real."
     );
+
+    imagem.style.maxWidth = "390px";
+
+    return imagem;
   }
 
   // ========================================
   // CARTÃO FICTÍCIO
   // ========================================
 
-  function criarCartaoFicticio() {
+  function criarCartao() {
     const svg = `
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 440 290"
         width="440"
-        height="330"
-        viewBox="0 0 440 330"
+        height="290"
       >
         <rect
-          width="440"
-          height="330"
-          rx="16"
-          fill="#ffffff"
-        />
-
-        <text
-          x="220"
-          y="30"
-          text-anchor="middle"
-          font-family="Arial, sans-serif"
-          font-size="20"
-          font-weight="700"
-          fill="#151515"
-        >
-          CARTÃO DE TESTE
-        </text>
-
-        <rect
-          x="15"
-          y="55"
-          width="410"
-          height="235"
-          rx="20"
+          x="10"
+          y="10"
+          width="420"
+          height="250"
+          rx="22"
           fill="#151515"
         />
 
         <path
-          d="M300 55H425V180Z"
-          fill="#252525"
+          d="M310 10H430V150Z"
+          fill="#292929"
         />
 
         <text
-          x="43"
-          y="107"
+          x="38"
+          y="68"
           font-family="Arial, sans-serif"
-          font-size="29"
+          font-size="32"
           font-weight="900"
-          fill="#ffffff"
+          fill="white"
         >
           VÉRTICE
         </text>
 
         <text
-          x="44"
-          y="130"
+          x="40"
+          y="91"
           font-family="Arial, sans-serif"
           font-size="12"
-          letter-spacing="4"
+          letter-spacing="5"
           fill="#d9ff50"
         >
           DEMO
         </text>
 
         <rect
-          x="44"
-          y="151"
-          width="45"
-          height="33"
+          x="40"
+          y="112"
+          width="48"
+          height="35"
           rx="6"
           fill="#d9cc8e"
         />
 
         <path
-          d="M44 162H89M44 173H89M59 151V184M74 151V184"
+          d="M40 124H88M40 136H88M56 112V147M72 112V147"
           stroke="#958652"
           stroke-width="1"
           fill="none"
         />
 
         <text
-          x="43"
-          y="218"
+          x="38"
+          y="190"
           font-family="monospace"
-          font-size="24"
-          letter-spacing="1"
-          fill="#ffffff"
+          font-size="25"
+          fill="white"
         >
           0000 0000 0000 0000
         </text>
 
         <text
-          x="44"
-          y="245"
+          x="40"
+          y="218"
           font-family="Arial, sans-serif"
           font-size="9"
           fill="#aaaaaa"
@@ -2243,18 +2189,18 @@ loadLocations();
         </text>
 
         <text
-          x="44"
-          y="264"
+          x="40"
+          y="239"
           font-family="Arial, sans-serif"
-          font-size="13"
-          fill="#ffffff"
+          font-size="14"
+          fill="white"
         >
           CLIENTE EXEMPLO
         </text>
 
         <text
-          x="325"
-          y="245"
+          x="330"
+          y="218"
           font-family="Arial, sans-serif"
           font-size="9"
           fill="#aaaaaa"
@@ -2263,32 +2209,32 @@ loadLocations();
         </text>
 
         <text
-          x="325"
-          y="264"
+          x="330"
+          y="239"
           font-family="Arial, sans-serif"
           font-size="15"
-          fill="#ffffff"
+          fill="white"
         >
           12/30
         </text>
 
         <text
           x="220"
-          y="316"
+          y="284"
           text-anchor="middle"
           font-family="Arial, sans-serif"
           font-size="12"
           font-weight="700"
           fill="#555555"
         >
-          NENHUMA COBRANÇA REAL
+          CARTÃO DE TESTE — SEM COBRANÇA REAL
         </text>
       </svg>
     `;
 
-    return imagemSVG(
+    return converterSVG(
       svg,
-      "Cartão fictício VÉRTICE com número de teste e sem cobrança real."
+      "Cartão fictício da VÉRTICE, sem cobrança real."
     );
   }
 
@@ -2296,13 +2242,13 @@ loadLocations();
   // BOLETO FICTÍCIO
   // ========================================
 
-  function criarBoletoFicticio(valor) {
+  function criarBoleto(valor) {
     let barras = "";
 
     for (let i = 0; i < 80; i++) {
       const x = 30 + i * 4.7;
 
-      // Interrompe o desenho no centro.
+      // O desenho é interrompido pela palavra DEMO.
       if (x > 162 && x < 275) continue;
 
       const largura = i % 3 === 0 ? 3 : 1.5;
@@ -2321,17 +2267,17 @@ loadLocations();
     const svg = `
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 440 350"
         width="440"
         height="350"
-        viewBox="0 0 440 350"
       >
         <rect
           x="1"
           y="1"
           width="438"
           height="348"
-          rx="16"
-          fill="#ffffff"
+          rx="14"
+          fill="white"
           stroke="#dddddd"
         />
 
@@ -2340,7 +2286,7 @@ loadLocations();
           y="1"
           width="438"
           height="60"
-          rx="16"
+          rx="14"
           fill="#151515"
         />
 
@@ -2351,7 +2297,7 @@ loadLocations();
           font-family="Arial, sans-serif"
           font-size="23"
           font-weight="700"
-          fill="#ffffff"
+          fill="white"
         >
           VÉRTICE / BOLETO FICTÍCIO
         </text>
@@ -2445,113 +2391,119 @@ loadLocations();
       </svg>
     `;
 
-    return imagemSVG(
+    return converterSVG(
       svg,
-      "Boleto fictício VÉRTICE, sem validade bancária."
+      "Boleto fictício da VÉRTICE, sem validade bancária."
     );
   }
 
   // ========================================
-  // MONTA A IMAGEM DO MÉTODO SELECIONADO
+  // MONTA A APRESENTAÇÃO DO PAGAMENTO
   // ========================================
 
   function montarPagamento(metodo, valor) {
     const caixa = document.createElement("div");
-    caixa.className = "vertice-pagamento-demo";
+    caixa.className = "pagamento-vertice";
+
+    const titulo = document.createElement("h3");
+    const descricao = document.createElement("p");
 
     let imagem;
-    let descricao;
 
     if (metodo === "cartao") {
-      imagem = criarCartaoFicticio();
+      titulo.textContent = "CARTÃO DE TESTE";
+      imagem = criarCartao();
 
-      descricao =
-        "Cartão demonstrativo. Use somente os dados de teste.";
+      descricao.textContent =
+        "Use somente os dados fictícios indicados. " +
+        "Nenhuma cobrança será realizada.";
     } else if (metodo === "boleto") {
-      imagem = criarBoletoFicticio(valor);
+      titulo.textContent = "BOLETO FICTÍCIO";
+      imagem = criarBoleto(valor);
 
-      descricao =
-        "Boleto ilustrativo, sem linha digitável válida e não pagável.";
+      descricao.textContent =
+        "Boleto ilustrativo, sem validade bancária " +
+        "e sem linha digitável para pagamento.";
     } else {
-      imagem = criarPixFicticio();
+      titulo.textContent = "PIX FICTÍCIO";
+      imagem = criarPix();
 
-      descricao =
-        "Pix ilustrativo. O desenho não contém chave ou pagamento.";
+      descricao.textContent =
+        "Escaneie para ler a mensagem de demonstração. " +
+        "Este QR Code contém apenas texto, " +
+        "não contém chave Pix e não realiza pagamentos.";
     }
 
-    const texto = document.createElement("p");
-    texto.textContent = descricao;
-
-    caixa.append(imagem, texto);
+    caixa.append(
+      titulo,
+      imagem,
+      descricao
+    );
 
     return caixa;
   }
 
   // ========================================
-  // MOSTRA A IMAGEM AO ESCOLHER PAGAMENTO
+  // MOSTRA A IMAGEM AO ESCOLHER O MÉTODO
   // ========================================
 
-  function mostrarPreviaPagamento() {
-    const anterior = camposPagamento.querySelector(
-      ".vertice-pagamento-demo"
-    );
+  function mostrarPrevia() {
+    campos.querySelectorAll(".pagamento-vertice")
+      .forEach(elemento => elemento.remove());
 
-    if (anterior) {
-      anterior.remove();
-    }
+    const metodo = form.elements.pagamento.value;
 
-    const metodo = formulario.elements.pagamento.value;
-
-    camposPagamento.appendChild(
-      montarPagamento(metodo, cartTotalValue())
+    campos.appendChild(
+      montarPagamento(
+        metodo,
+        cartTotalValue()
+      )
     );
   }
 
-  // Preserva os campos do cartão e os avisos atuais.
-  const renderPaymentAnterior = renderPayment;
+  // Preserva os campos de cartão do código principal.
+  const renderPagamentoAnterior = renderPayment;
 
   renderPayment = function () {
-    renderPaymentAnterior();
-    mostrarPreviaPagamento();
+    renderPagamentoAnterior();
+    mostrarPrevia();
   };
 
-  // Os eventos anteriores continuam preenchendo os campos.
-  // Este evento acrescenta a imagem após eles.
-  formulario.elements.pagamento.forEach(opcao => {
+  // Os eventos anteriores continuam mostrando os campos.
+  // Este acrescenta a imagem correspondente.
+  form.elements.pagamento.forEach(opcao => {
     opcao.addEventListener(
       "change",
-      mostrarPreviaPagamento
+      mostrarPrevia
     );
   });
 
   // ========================================
-  // RESULTADO DO PEDIDO FICTÍCIO
-  // Substitui o envio demonstrativo anterior.
+  // FINALIZAÇÃO DEMONSTRATIVA
   // ========================================
 
-  formulario.addEventListener(
+  form.addEventListener(
     "submit",
     evento => {
       evento.preventDefault();
       evento.stopImmediatePropagation();
 
       if (
-        !formulario.reportValidity() ||
+        !form.reportValidity() ||
         !cart.length
       ) {
         return;
       }
 
-      const dados = new FormData(formulario);
+      const dados = new FormData(form);
       const metodo = dados.get("pagamento");
-      const valor = cartTotalValue();
+      const total = cartTotalValue();
 
       const codigo =
         "DEMO-" +
         Date.now().toString(36).toUpperCase();
 
       resultado.replaceChildren();
-      resultado.classList.add("vertice-resultado-demo");
 
       const titulo = document.createElement("h3");
       titulo.textContent = "Pedido fictício criado!";
@@ -2559,7 +2511,7 @@ loadLocations();
       const resumo = document.createElement("p");
 
       resumo.textContent =
-        `${codigo} · Total: ${money(valor)}`;
+        `${codigo} · Total: ${money(total)}`;
 
       const entrega = document.createElement("p");
 
@@ -2568,7 +2520,7 @@ loadLocations();
         `${dados.get("estado")}.`;
 
       const aviso = document.createElement("p");
-      aviso.className = "vertice-aviso-demo";
+      aviso.className = "aviso-pagamento-vertice";
 
       aviso.textContent =
         "SIMULAÇÃO ESCOLAR — nenhum pagamento, " +
@@ -2579,14 +2531,14 @@ loadLocations();
         resumo,
         entrega,
         aviso,
-        montarPagamento(metodo, valor)
+        montarPagamento(metodo, total)
       );
 
       if (metodo === "cartao") {
         const parcelas = document.createElement("p");
 
         parcelas.textContent =
-          `Cartão de teste •••• 0000 · ` +
+          "Cartão de teste •••• 0000 · " +
           `${dados.get("parcelas") || "1"} parcela(s). ` +
           "Aprovação simulada, sem transação real.";
 
@@ -2605,10 +2557,10 @@ loadLocations();
 
       resultado.appendChild(voltar);
 
-      formulario.reset();
-      camposPagamento.replaceChildren();
+      form.reset();
+      campos.replaceChildren();
 
-      formulario.hidden = true;
+      form.hidden = true;
       resultado.hidden = false;
 
       cart = [];
@@ -2619,4 +2571,9 @@ loadLocations();
     },
     true
   );
+
+  // Também prepara a imagem caso o checkout esteja aberto.
+  if (janela.open) {
+    renderPayment();
+  }
 })();
