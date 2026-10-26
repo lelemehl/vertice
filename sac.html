@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SAC | VÉRTICE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="announcement">
+    VÉRTICE / ATENDIMENTO AO CLIENTE
+  </div>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">VÉRTICE<span>®</span></a>
+
+    <a class="text-link" href="index.html">
+      VOLTAR À LOJA ↗
+    </a>
+  </header>
+
+  <main class="section-wrap sac-content">
+    <p class="eyebrow">ESTAMOS AQUI PARA OUVIR VOCÊ</p>
+
+    <h1>SAC / Fale conosco.</h1>
+
+    <p class="simulation-note">
+      Formulário fictício para apresentação.
+      Use dados de teste.
+      Nenhuma informação ou arquivo será enviado ou armazenado.
+    </p>
+
+    <form id="sacForm" class="sac-form">
+      <div class="form-grid">
+        <label>
+          Nome completo
+          <input
+            name="nome"
+            required
+            minlength="3"
+            maxlength="100"
+            autocomplete="off"
+          >
+        </label>
+
+        <label>
+          E-mail de retorno
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="cliente@example.com"
+            autocomplete="off"
+          >
+        </label>
+
+        <label>
+          Telefone
+          <input
+            name="telefone"
+            type="tel"
+            required
+            minlength="10"
+            maxlength="20"
+            autocomplete="off"
+          >
+        </label>
+
+        <label>
+          Número do pedido (opcional)
+          <input
+            name="pedido"
+            maxlength="40"
+            placeholder="DEMO-..."
+            autocomplete="off"
+          >
+        </label>
+      </div>
+
+      <label>
+        Assunto
+        <select name="assunto" required>
+          <option value="">Selecione</option>
+          <option>Dúvida sobre produto ou tamanho</option>
+          <option>Entrega e pedido</option>
+          <option>Troca ou devolução</option>
+          <option>Pagamento</option>
+          <option>Reclamação</option>
+          <option>Sugestão</option>
+          <option>Outros</option>
+        </select>
+      </label>
+
+      <label>
+        Conte todos os detalhes
+
+        <textarea
+          name="mensagem"
+          required
+          minlength="10"
+          maxlength="5000"
+          rows="8"
+          placeholder="Descreva o que aconteceu e como podemos ajudar."
+        ></textarea>
+      </label>
+
+      <label>
+        Anexos (opcional, apenas demonstração)
+
+        <input
+          type="file"
+          name="anexos"
+          accept="image/*,.pdf"
+          multiple
+        >
+
+        <span class="field-note">
+          Os arquivos selecionados não serão enviados.
+        </span>
+      </label>
+
+      <label class="choice">
+        <input type="checkbox" required>
+        Estou usando dados de teste e entendo que este atendimento é fictício.
+      </label>
+
+      <button class="button button-dark" type="submit">
+        SIMULAR ENVIO ↗
+      </button>
+    </form>
+
+    <div id="sacStatus" role="status" hidden></div>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="index.html">VÉRTICE<span>®</span></a>
+
+    <address class="store-contact">
+      <a href="tel:+5513997825769">+55 (13) 99782-5769</a>
+
+      <span>contato@vertice.example — e-mail fictício</span>
+
+      <span>
+        Rua Nice, 720 - Monte Carlo<br>
+        Ilha Comprida - SP
+      </span>
+    </address>
+
+    <span>PROJETO DEMONSTRATIVO.</span>
+  </footer>
+
+  <script>
+    document.querySelector("#sacForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!event.target.reportValidity()) return;
+
+      const status = document.querySelector("#sacStatus");
+      const protocol = Date.now().toString(36).toUpperCase();
+
+      status.className = "sac-status";
+
+      status.textContent =
+        `Atendimento fictício registrado para apresentação. ` +
+        `Protocolo DEMO-SAC-${protocol}. ` +
+        `Nenhuma informação ou anexo foi enviado. ` +
+        `Em um atendimento real, a resposta seria encaminhada ao e-mail informado.`;
+
+      status.hidden = false;
+      event.target.reset();
+
+      status.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+</body>
+</html>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/demo-editorial.css">
