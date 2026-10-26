@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VÉRTICE — streetwear para quem cria o próprio caminho.">
+
+  <title>VÉRTICE | Streetwear</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+  <div class="announcement">
+    STREETWEAR PARA QUEM CRIA O PRÓPRIO CAMINHO.
+  </div>
+
+  <header class="site-header">
+    <a class="logo" href="#inicio">VÉRTICE<span>®</span></a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#colecao">Coleção</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#newsletter">Novidades</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Buscar">
+        ⌕
+      </button>
+
+      <button class="icon-button favorites-open" aria-label="Abrir favoritos">
+        ♡ <span class="action-label">Favoritos</span>
+        <span id="favoritesCount">0</span>
+      </button>
+
+      <button class="icon-button cart-open" aria-label="Abrir sacola">
+        Sacola <span id="cartCount">0</span>
+      </button>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">NOVA TEMPORADA / 2026</p>
+
+        <h1>Vista sua<br><em>próxima fase.</em></h1>
+
+        <p class="hero-description">
+          Peças essenciais, atitude urbana e liberdade para criar seu próprio estilo.
+        </p>
+
+        <a class="button button-dark" href="#colecao">
+          EXPLORAR COLEÇÃO <span>↗</span>
+        </a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8607/monte-leste-1665.jpg?ims=900x1200"
+          alt="Look streetwear com camiseta ampla e bermuda"
+        >
+
+        <span class="hero-stamp">MOVE<br>YOUR<br>WAY.</span>
+      </div>
+
+      <div class="hero-bottom">
+        <span>01 — ESSENCIAIS URBANOS</span>
+        <span>FEITO PARA O SEU RITMO ↓</span>
+      </div>
+    </section>
+
+    <section class="collection section-wrap" id="colecao">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ESCOLHA SEU PRÓPRIO CAMINHO</p>
+          <h2>Peças em destaque<span>.</span></h2>
+        </div>
+
+        <p>Modelagens versáteis para acompanhar<br>seu dia, do seu jeito.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="todos">Tudo</button>
+          <button class="filter" data-category="camisetas">Camisetas</button>
+          <button class="filter" data-category="moletons">Moletons</button>
+          <button class="filter" data-category="calcas">Calças</button>
+          <button class="filter" data-category="bermudas">Bermudas</button>
+          <button class="filter" data-category="saias">Saias</button>
+          <button class="filter" data-category="conjuntos">Conjuntos</button>
+          <button class="filter" data-category="acessorios">Acessórios</button>
+        </div>
+
+        <div class="toolbar-right">
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="Buscar peça..."
+            aria-label="Buscar produtos"
+          >
+
+          <select id="sortSelect" aria-label="Ordenar produtos">
+            <option value="featured">Em destaque</option>
+            <option value="low">Menor preço</option>
+            <option value="high">Maior preço</option>
+            <option value="name">Nome A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="result-count" id="resultCount"></p>
+
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        Nenhuma peça encontrada. Tente outra busca.
+      </div>
+    </section>
+
+    <section class="manifesto" id="sobre">
+      <div class="manifesto-image">
+        <img
+          src="https://monteleste.cdn.magazord.com.br/img/2025/11/produto/6321/monte-leste-0202.jpg?ims=900x1200"
+          alt="Produção de moda streetwear"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="manifesto-copy">
+        <p class="eyebrow">MAIS QUE ROUPA. IDENTIDADE.</p>
+
+        <h2>Seu estilo.<br>Suas regras.</h2>
+
+        <p>
+          A VÉRTICE nasceu da ideia de que não existe um único jeito de ser.
+          Criamos peças versáteis para quem mistura referências, experimenta
+          e não tem medo de mudar.
+        </p>
+
+        <a href="#colecao" class="text-link">
+          ENCONTRE SUA PEÇA <span>↗</span>
+        </a>
+
+        <span class="manifesto-mark">V.</span>
+      </div>
+    </section>
+
+    <section class="newsletter section-wrap" id="newsletter">
+      <div>
+        <p class="eyebrow">ENTRE PARA A LISTA</p>
+        <h2>Novidades no seu radar<span>.</span></h2>
+        <p>Receba lançamentos e novidades da VÉRTICE.</p>
+      </div>
+
+      <form id="newsletterForm">
+        <label class="sr-only" for="emailInput">Seu e-mail</label>
+
+        <input
+          id="emailInput"
+          type="email"
+          placeholder="Seu melhor e-mail"
+          required
+        >
+
+        <button type="submit" class="button button-dark">
+          QUERO RECEBER ↗
+        </button>
+      </form>
+
+      <p class="form-message" id="newsletterMessage" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <a class="logo" href="#inicio">VÉRTICE<span>®</span></a>
+      <p>Vista sua próxima fase.</p>
+    </div>
+
+    <address class="store-contact">
+      <a href="tel:+5513997825769">+55 (13) 99782-5769</a>
+
+      <span>contato@vertice.example — e-mail fictício</span>
+
+      <span>
+        Rua Nice, 720 - Monte Carlo<br>
+        Ilha Comprida - SP
+      </span>
+
+      <a
+        class="text-link"
+        href="sac.html"
+        target="_blank"
+        rel="noopener"
+      >
+        SAC / FALE CONOSCO ↗
+      </a>
+    </address>
+
+    <span>
+      © 2026 VÉRTICE. PROJETO DEMONSTRATIVO.<br>
+      <small>
+        Fotos ilustrativas: Monte Leste e fontes do catálogo original.
+        Sem vínculo comercial.
+      </small>
+    </span>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- SACOLA -->
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Sacola de compras"
+    aria-hidden="true"
+    inert
+  >
+    <div class="drawer-header">
+      <div>
+        <p class="eyebrow">SUA SELEÇÃO</p>
+        <h2>Sacola <span id="drawerCount">(0)</span></h2>
+      </div>
+
+      <button class="close-button" id="cartClose" aria-label="Fechar sacola">
+        ×
+      </button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <strong id="cartTotal">R$ 0,00</strong>
+      </div>
+
+      <p class="shipping-note">Frete informado na etapa de compra.</p>
+
+      <button id="checkoutButton" class="button button-dark checkout-button">
+        FINALIZAR COMPRA ↗
+      </button>
+
+      <p class="demo-note">
+        Projeto demonstrativo. Nenhum pagamento será realizado.
+      </p>
+    </div>
+  </aside>
+
+  <!-- FAVORITOS -->
+  <aside
+    class="cart-drawer"
+    id="favoritesDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Seus favoritos"
+    aria-hidden="true"
+    inert
+  >
+    <div class="drawer-header">
+      <div>
+        <p class="eyebrow">SUAS PEÇAS PREFERIDAS</p>
+        <h2>Favoritos <span id="favoritesDrawerCount">(0)</span></h2>
+      </div>
+
+      <button
+        class="close-button"
+        id="favoritesClose"
+        aria-label="Fechar favoritos"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="cart-items" id="favoritesItems"></div>
+  </aside>
+
+  <!-- DETALHES DO PRODUTO -->
+  <dialog id="productDialog" class="product-dialog">
+    <button
+      class="close-button dialog-close"
+      id="dialogClose"
+      aria-label="Fechar detalhes"
+    >
+      ×
+    </button>
+
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <!-- FINALIZAÇÃO -->
+  <dialog
+    id="checkoutDialog"
+    class="product-dialog checkout-dialog"
+    aria-labelledby="checkoutTitle"
+  >
+    <button
+      class="close-button dialog-close"
+      id="checkoutClose"
+      aria-label="Fechar finalização"
+    >
+      ×
+    </button>
+
+    <div class="checkout-content">
+      <p class="eyebrow">VÉRTICE / FINALIZAÇÃO</p>
+      <h2 id="checkoutTitle">Seu pedido.</h2>
+
+      <p class="simulation-note">
+        APRESENTAÇÃO FICTÍCIA — use apenas dados de teste.
+        Nenhuma informação será enviada e nenhuma cobrança será feita.
+      </p>
+
+      <div id="checkoutSummary"></div>
+
+      <form id="checkoutForm">
+        <fieldset>
+          <legend>1. Dados do cliente</legend>
+
+          <div class="form-grid">
+            <label>
+              Nome completo
+              <input
+                name="nome"
+                required
+                minlength="3"
+                maxlength="100"
+                autocomplete="off"
+                placeholder="Cliente Exemplo"
+              >
+            </label>
+
+            <label>
+              E-mail
+              <input
+                name="email"
+                type="email"
+                required
+                autocomplete="off"
+                placeholder="cliente@example.com"
+              >
+            </label>
+
+            <label>
+              Telefone
+              <input
+                name="telefone"
+                type="tel"
+                required
+                minlength="10"
+                maxlength="20"
+                autocomplete="off"
+                placeholder="(13) 99999-0000"
+              >
+            </label>
+
+            <label>
+              CPF de teste
+              <input
+                name="cpf"
+                inputmode="numeric"
+                required
+                pattern="[0-9.\-]{11,14}"
+                maxlength="14"
+                autocomplete="off"
+                placeholder="000.000.000-00"
+              >
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Endereço de entrega</legend>
+
+          <div class="form-grid">
+            <label>
+              CEP
+              <input
+                name="cep"
+                inputmode="numeric"
+                required
+                pattern="[0-9]{5}-?[0-9]{3}"
+                maxlength="9"
+                placeholder="00000-000"
+              >
+            </label>
+
+            <label>
+              Rua / avenida
+              <input name="rua" required maxlength="140" autocomplete="off">
+            </label>
+
+            <label>
+              Número
+              <input name="numero" required maxlength="12" autocomplete="off">
+            </label>
+
+            <label>
+              Complemento (opcional)
+              <input name="complemento" maxlength="80" autocomplete="off">
+            </label>
+
+            <label>
+              Bairro
+              <input name="bairro" required maxlength="80" autocomplete="off">
+            </label>
+
+            <label>
+              Estado
+              <select name="estado" id="stateSelect" required>
+                <option value="">Selecione o estado</option>
+              </select>
+            </label>
+
+            <label>
+              Cidade
+              <select name="cidade" id="citySelect" required disabled>
+                <option value="">Selecione primeiro o estado</option>
+              </select>
+            </label>
+          </div>
+
+          <p id="locationStatus" class="field-note" role="status"></p>
+
+          <button
+            type="button"
+            class="add-button"
+            id="retryCities"
+            hidden
+          >
+            TENTAR CARREGAR CIDADES NOVAMENTE
+          </button>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Entrega</legend>
+
+          <label class="choice">
+            <input type="radio" name="entrega" value="padrao" checked>
+            Entrega padrão — grátis.
+            Simulação de 5 a 8 dias úteis.
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Pagamento demonstrativo</legend>
+
+          <div class="payment-options">
+            <label class="choice">
+              <input type="radio" name="pagamento" value="pix" checked>
+              Pix
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="pagamento" value="cartao">
+              Cartão
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="pagamento" value="boleto">
+              Boleto
+            </label>
+          </div>
+
+          <div id="paymentFields"></div>
+        </fieldset>
+
+        <label class="choice">
+          <input type="checkbox" required>
+          Entendo que este pedido é fictício e estou usando dados de teste.
+        </label>
+
+        <button type="submit" class="button button-dark checkout-button">
+          FINALIZAR PEDIDO FICTÍCIO ↗
+        </button>
+      </form>
+
+      <div id="orderResult" role="status" hidden></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/demo-editorial.css">
