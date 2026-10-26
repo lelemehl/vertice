@@ -1629,3 +1629,267 @@ loadLocations();
   renderCart();
   renderFavorites();
 })();
+
+// ==========================================
+// ESTADOS E CIDADES NO PRÓPRIO SCRIPT.JS
+// Cole este bloco no FINAL do arquivo.
+// ==========================================
+
+(() => {
+  const campoEstado = document.querySelector("#stateSelect");
+  const campoCidade = document.querySelector("#citySelect");
+  const mensagem = document.querySelector("#locationStatus");
+
+  if (!campoEstado || !campoCidade) return;
+
+  // Estados brasileiros dentro do próprio JavaScript.
+  const estadosBrasil = [
+    { id: 12, sigla: "AC", nome: "Acre" },
+    { id: 27, sigla: "AL", nome: "Alagoas" },
+    { id: 16, sigla: "AP", nome: "Amapá" },
+    { id: 13, sigla: "AM", nome: "Amazonas" },
+    { id: 29, sigla: "BA", nome: "Bahia" },
+    { id: 23, sigla: "CE", nome: "Ceará" },
+    { id: 53, sigla: "DF", nome: "Distrito Federal" },
+    { id: 32, sigla: "ES", nome: "Espírito Santo" },
+    { id: 52, sigla: "GO", nome: "Goiás" },
+    { id: 21, sigla: "MA", nome: "Maranhão" },
+    { id: 51, sigla: "MT", nome: "Mato Grosso" },
+    { id: 50, sigla: "MS", nome: "Mato Grosso do Sul" },
+    { id: 31, sigla: "MG", nome: "Minas Gerais" },
+    { id: 15, sigla: "PA", nome: "Pará" },
+    { id: 25, sigla: "PB", nome: "Paraíba" },
+    { id: 41, sigla: "PR", nome: "Paraná" },
+    { id: 26, sigla: "PE", nome: "Pernambuco" },
+    { id: 22, sigla: "PI", nome: "Piauí" },
+    { id: 33, sigla: "RJ", nome: "Rio de Janeiro" },
+    { id: 24, sigla: "RN", nome: "Rio Grande do Norte" },
+    { id: 43, sigla: "RS", nome: "Rio Grande do Sul" },
+    { id: 11, sigla: "RO", nome: "Rondônia" },
+    { id: 14, sigla: "RR", nome: "Roraima" },
+    { id: 42, sigla: "SC", nome: "Santa Catarina" },
+    { id: 35, sigla: "SP", nome: "São Paulo" },
+    { id: 28, sigla: "SE", nome: "Sergipe" },
+    { id: 17, sigla: "TO", nome: "Tocantins" }
+  ];
+
+  // Duas fontes para a mesma base de municípios.
+  const fontesMunicipios = [
+    "https://cdn.jsdelivr.net/gh/kelvins/municipios-brasileiros@main/json/municipios.json",
+    "https://raw.githubusercontent.com/kelvins/municipios-brasileiros/main/json/municipios.json"
+  ];
+
+  let baseMunicipios = null;
+  let carregamentoEmAndamento = null;
+  let numeroSelecao = 0;
+
+  function mostrarMensagem(texto) {
+    if (mensagem) {
+      mensagem.textContent = texto;
+    }
+  }
+
+  function prepararCidade(texto) {
+    campoCidade.replaceChildren(
+      new Option(texto, "")
+    );
+
+    campoCidade.disabled = true;
+  }
+
+  // Preenche os estados sem depender de outro arquivo.
+  const estadoAnterior = campoEstado.value;
+
+  campoEstado.replaceChildren(
+    new Option("Selecione o estado", "")
+  );
+
+  estadosBrasil.forEach(estado => {
+    campoEstado.add(
+      new Option(
+        `${estado.nome} — ${estado.sigla}`,
+        estado.sigla
+      )
+    );
+  });
+
+  campoEstado.disabled = false;
+  campoEstado.required = true;
+  campoCidade.required = true;
+
+  if (
+    estadosBrasil.some(
+      estado => estado.sigla === estadoAnterior
+    )
+  ) {
+    campoEstado.value = estadoAnterior;
+  }
+
+  prepararCidade("Selecione primeiro o estado");
+  mostrarMensagem("");
+
+  // Busca a base uma única vez durante a visita.
+  async function obterMunicipios() {
+    if (baseMunicipios) {
+      return baseMunicipios;
+    }
+
+    if (carregamentoEmAndamento) {
+      return carregamentoEmAndamento;
+    }
+
+    carregamentoEmAndamento = (async () => {
+      for (const endereco of fontesMunicipios) {
+        const controlador = new AbortController();
+
+        const limite = setTimeout(() => {
+          controlador.abort();
+        }, 12000);
+
+        try {
+          const resposta = await fetch(endereco, {
+            signal: controlador.signal
+          });
+
+          if (!resposta.ok) {
+            throw new Error("Falha ao buscar municípios.");
+          }
+
+          const dados = await resposta.json();
+
+          if (
+            !Array.isArray(dados) ||
+            !dados.length ||
+            !dados.every(item =>
+              typeof item.nome === "string" &&
+              Number.isFinite(Number(item.codigo_uf))
+            )
+          ) {
+            throw new Error("Base de municípios inválida.");
+          }
+
+          baseMunicipios = dados;
+
+          return baseMunicipios;
+        } catch (erro) {
+          // Se uma fonte falhar, tenta a próxima.
+        } finally {
+          clearTimeout(limite);
+        }
+      }
+
+      throw new Error("Não foi possível carregar as cidades.");
+    })();
+
+    try {
+      return await carregamentoEmAndamento;
+    } finally {
+      carregamentoEmAndamento = null;
+    }
+  }
+
+  async function atualizarCidades() {
+    const selecaoAtual = ++numeroSelecao;
+
+    const estado = estadosBrasil.find(
+      item => item.sigla === campoEstado.value
+    );
+
+    if (!estado) {
+      prepararCidade("Selecione primeiro o estado");
+      mostrarMensagem("");
+      return;
+    }
+
+    prepararCidade("Carregando cidades...");
+    mostrarMensagem(`Carregando cidades de ${estado.nome}...`);
+
+    try {
+      const municipios = await obterMunicipios();
+
+      // Evita mostrar cidades de uma seleção anterior.
+      if (
+        selecaoAtual !== numeroSelecao ||
+        campoEstado.value !== estado.sigla
+      ) {
+        return;
+      }
+
+      const cidades = [
+        ...new Set(
+          municipios
+            .filter(item =>
+              Number(item.codigo_uf) === estado.id
+            )
+            .map(item => item.nome)
+        )
+      ].sort((a, b) =>
+        a.localeCompare(b, "pt-BR")
+      );
+
+      if (!cidades.length) {
+        throw new Error("Nenhuma cidade encontrada.");
+      }
+
+      campoCidade.replaceChildren(
+        new Option("Selecione a cidade", "")
+      );
+
+      const opcoes = document.createDocumentFragment();
+
+      cidades.forEach(cidade => {
+        opcoes.appendChild(
+          new Option(cidade, cidade)
+        );
+      });
+
+      campoCidade.appendChild(opcoes);
+      campoCidade.disabled = false;
+
+      mostrarMensagem(
+        `${cidades.length} municípios disponíveis em ${estado.nome}.`
+      );
+    } catch (erro) {
+      if (
+        selecaoAtual !== numeroSelecao ||
+        campoEstado.value !== estado.sigla
+      ) {
+        return;
+      }
+
+      prepararCidade("Não foi possível carregar");
+
+      mostrarMensagem(
+        "Confira sua internet. Depois selecione " +
+        "outro estado e volte ao estado desejado para tentar novamente."
+      );
+    }
+  }
+
+  // Substitui o comportamento antigo desse seletor.
+  // Mantém os mesmos campos usados pelo checkout.
+  campoEstado.addEventListener(
+    "change",
+    evento => {
+      evento.stopImmediatePropagation();
+      atualizarCidades();
+    },
+    true
+  );
+
+  // Limpa as cidades quando o checkout for reiniciado.
+  const formulario = campoEstado.closest("form");
+
+  if (formulario) {
+    formulario.addEventListener("reset", () => {
+      numeroSelecao++;
+
+      prepararCidade("Selecione primeiro o estado");
+      mostrarMensagem("");
+    });
+  }
+
+  if (campoEstado.value) {
+    atualizarCidades();
+  }
+})();
