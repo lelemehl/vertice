@@ -1,0 +1,1631 @@
+// ==========================================
+// VÉRTICE — JAVASCRIPT COMPLETO
+// ==========================================
+
+// ==========================================
+// CATÁLOGO SEM PEÇAS DUPLICADAS
+// ==========================================
+
+const products = [
+  {
+    id: 1,
+    name: "Camiseta Boxy Vértice",
+    category: "camisetas",
+    price: 89.90,
+    tag: "MAIS VENDIDO",
+    description: "Camiseta de caimento amplo para compor looks urbanos.",
+    image: "images/1.jpg"
+  },
+  {
+    id: 2,
+    name: "Moletom Essential",
+    category: "moletons",
+    price: 189.90,
+    tag: "ESSENCIAL",
+    description: "Moletom confortável, com visual minimalista e versátil.",
+    image: "images/2.jpg"
+  },
+  {
+    id: 3,
+    name: "Camiseta Urban",
+    category: "camisetas",
+    price: 99.90,
+    tag: "NOVO",
+    description: "Uma peça básica com presença para usar todos os dias.",
+    image: "images/3.jpg"
+  },
+  {
+    id: 4,
+    name: "Boné Vértice 06",
+    category: "acessorios",
+    price: 69.90,
+    tag: "EDIÇÃO LIMITADA",
+    description: "Acessório casual para finalizar seu visual.",
+    image: "images/4.jpg"
+  },
+  {
+    id: 5,
+    name: "Calça Cargo Utility",
+    category: "calcas",
+    price: 169.90,
+    tag: "URBAN FIT",
+    description: "Calça inspirada na utilidade urbana, com estilo descontraído.",
+    image: "images/5.jpg"
+  },
+  {
+    id: 6,
+    name: "Moletom Cloud",
+    category: "moletons",
+    price: 199.90,
+    tag: "CONFORTO",
+    description: "Camada confortável para dias mais frios e noites na cidade.",
+    image: "images/6.jpg"
+  },
+  {
+    id: 7,
+    name: "Bolsa Crossbody",
+    category: "acessorios",
+    price: 79.90,
+    tag: "FUNCIONAL",
+    description: "Bolsa compacta e prática para levar o essencial.",
+    image: "images/7.jpg"
+  },
+  {
+    id: 8,
+    name: "Camiseta Graphic",
+    category: "camisetas",
+    price: 109.90,
+    tag: "ARTE URBANA",
+    description: "Camiseta gráfica para dar personalidade ao look.",
+    image: "images/8.jpg"
+  },
+  {
+    id: 9,
+    name: "Camiseta Oversized Listrada",
+    category: "camisetas",
+    price: 119.90,
+    tag: "NOVO",
+    description: "Listras e modelagem ampla para um visual urbano.",
+    image: "images/9.jpg"
+  },
+  {
+    id: 10,
+    name: "Camiseta Raglan Street",
+    category: "camisetas",
+    price: 129.90,
+    tag: "NOVO",
+    description: "Recortes raglan e caimento oversized.",
+    image: "images/10.jpg"
+  },
+  {
+    id: 11,
+    name: "Camiseta Ringer Bordô",
+    category: "camisetas",
+    price: 109.90,
+    tag: "NOVO",
+    description: "Gola contrastante e corte boxy com inspiração retrô.",
+    image: "images/11.jpg"
+  },
+  {
+    id: 12,
+    name: "Baby Tee Estonada",
+    category: "camisetas",
+    price: 89.90,
+    tag: "NOVO",
+    description: "Modelagem curta com acabamento estonado.",
+    image: "images/12.jpg"
+  },
+  {
+    id: 13,
+    name: "Calça Jeans Baggy",
+    category: "calcas",
+    price: 219.90,
+    tag: "NOVO",
+    description: "Jeans de pernas amplas inspirado na cultura skate.",
+    image: "images/13.jpg"
+  },
+  {
+    id: 14,
+    name: "Calça Baggy Tech Marrom",
+    category: "calcas",
+    price: 189.90,
+    tag: "NOVO",
+    description: "Modelagem baggy com estética utilitária.",
+    image: "images/14.jpg"
+  },
+  {
+    id: 15,
+    name: "Shorts Curve Verde",
+    category: "bermudas",
+    price: 99.90,
+    tag: "NOVO",
+    description: "Shorts leves de pegada esportiva e urbana.",
+    image: "images/15.jpg"
+  },
+  {
+    id: 16,
+    name: "Bermuda Baggy Camuflada",
+    category: "bermudas",
+    price: 139.90,
+    tag: "NOVO",
+    description: "Bermuda ampla com estampa camuflada.",
+    image: "images/16.jpg"
+  },
+  {
+    id: 17,
+    name: "Minissaia Street Estampada",
+    category: "saias",
+    price: 109.90,
+    tag: "NOVO",
+    description: "Minissaia casual para composições streetwear.",
+    image: "images/17.jpg"
+  },
+  {
+    id: 18,
+    name: "Conjunto Moletom Oversized",
+    category: "conjuntos",
+    price: 299.90,
+    tag: "NOVO",
+    description: "Conjunto de moletom com modelagem ampla e visual estonado.",
+    image: "images/18.jpg"
+  },
+  {
+    id: 20,
+    name: "Polo Cropped Feminina Listrada",
+    category: "camisetas",
+    price: 129.90,
+    tag: "NOVO",
+    description: "Polo cropped listrada com modelagem ampla e inspiração esportiva.",
+    image: "images/20.jpg"
+  },
+  {
+    id: 21,
+    name: "Microshorts Feminino Street Cinza",
+    category: "bermudas",
+    price: 99.90,
+    tag: "NOVO",
+    description: "Microshorts de moletom cinza para combinar com baby tee ou camiseta oversized.",
+    image: "images/21.jpg"
+  },
+  {
+    id: 23,
+    name: "Minissaia Feminina Cargo Camuflada",
+    category: "saias",
+    price: 119.90,
+    tag: "STREET",
+    description: "Minissaia camuflada em tons de areia, com estética utilitária para looks streetwear.",
+    image: "images/23.jpg"
+  },
+  {
+    id: 24,
+    name: "Baby Tee Feminina Rosa Estonada",
+    category: "camisetas",
+    price: 89.90,
+    tag: "NOVO",
+    description: "Baby tee rosa estonada para trazer cor ao look com jeans baggy, shorts ou saia.",
+    image: "images/24.jpg"
+  }
+];
+
+// ==========================================
+// ELEMENTOS DO HTML
+// ==========================================
+
+const productGrid = document.querySelector("#productGrid");
+const resultCount = document.querySelector("#resultCount");
+const emptyState = document.querySelector("#emptyState");
+const searchInput = document.querySelector("#searchInput");
+const sortSelect = document.querySelector("#sortSelect");
+const filters = document.querySelector("#filters");
+
+const cartDrawer = document.querySelector("#cartDrawer");
+const overlay = document.querySelector("#overlay");
+const cartItems = document.querySelector("#cartItems");
+const cartCount = document.querySelector("#cartCount");
+const drawerCount = document.querySelector("#drawerCount");
+const cartTotal = document.querySelector("#cartTotal");
+
+const productDialog = document.querySelector("#productDialog");
+const dialogContent = document.querySelector("#dialogContent");
+const toast = document.querySelector("#toast");
+
+const favoritesDrawer = document.querySelector("#favoritesDrawer");
+const favoritesItems = document.querySelector("#favoritesItems");
+
+const checkoutDialog = document.querySelector("#checkoutDialog");
+const checkoutForm = document.querySelector("#checkoutForm");
+const orderResult = document.querySelector("#orderResult");
+const paymentFields = document.querySelector("#paymentFields");
+const stateSelect = document.querySelector("#stateSelect");
+const citySelect = document.querySelector("#citySelect");
+
+const menuToggle = document.querySelector("#menuToggle");
+const mainNav = document.querySelector("#mainNav");
+
+// ==========================================
+// ESTADOS DA LOJA
+// ==========================================
+
+let activeCategory = "todos";
+let favorites = new Set();
+let cart = [];
+let toastTimeout;
+let lastDrawerTrigger = null;
+
+let locations = window.VERTICE_LOCATIONS || [];
+
+const categoryNames = {
+  camisetas: "Camisetas",
+  moletons: "Moletons",
+  calcas: "Calças",
+  acessorios: "Acessórios",
+  bermudas: "Bermudas",
+  saias: "Saias",
+  conjuntos: "Conjuntos"
+};
+
+// ==========================================
+// ESTILO DO CORAÇÃO
+// Não exige alterações no CSS.
+// ==========================================
+
+const favoriteStyle = document.createElement("style");
+
+favoriteStyle.textContent = `
+  #productGrid .product-image {
+    position: relative !important;
+    isolation: isolate;
+  }
+
+  #productGrid .favorite-button {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    z-index: 10 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+
+    margin: 0 !important;
+    padding: 9px !important;
+
+    border: 1px solid #dddddd !important;
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+    color: #202020 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+    pointer-events: auto !important;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    appearance: none;
+  }
+
+  #productGrid .favorite-button svg {
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0;
+    pointer-events: none !important;
+  }
+
+  #productGrid .favorite-button.is-favorite {
+    color: #d62845 !important;
+    background: #ffffff !important;
+    border-color: #d62845 !important;
+  }
+
+  #productGrid .favorite-button:focus-visible {
+    outline: 3px solid #151515 !important;
+    outline-offset: 3px;
+  }
+`;
+
+document.head.appendChild(favoriteStyle);
+
+// ==========================================
+// FUNÇÕES AUXILIARES
+// ==========================================
+
+function money(value) {
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function sizesFor(product) {
+  return product.category === "acessorios"
+    ? ["Único"]
+    : ["P", "M", "G", "GG"];
+}
+
+function cartTotalValue() {
+  return cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimeout);
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2300);
+}
+
+function heartIcon(isFavorite) {
+  return `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="${isFavorite ? "currentColor" : "none"}"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="
+        M20.84 4.61
+        a5.5 5.5 0 0 0-7.78 0
+        L12 5.67
+        l-1.06-1.06
+        a5.5 5.5 0 0 0-7.78 7.78
+        l1.06 1.06
+        L12 21.23
+        l7.78-7.78
+        1.06-1.06
+        a5.5 5.5 0 0 0 0-7.78
+        Z
+      "/>
+    </svg>
+  `;
+}
+
+// ==========================================
+// CARTÃO DO PRODUTO
+// ==========================================
+
+function productCard(product) {
+  const isFavorite = favorites.has(product.id);
+
+  return `
+    <article class="product-card">
+      <div
+        class="product-image"
+        data-view="${product.id}"
+        tabindex="0"
+        role="button"
+        aria-label="Ver ${product.name}"
+      >
+        <img
+          class="product-photo"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x800/f0efe9/222222?text=VERTICE';"
+        >
+
+        <span class="product-tag">
+          ${product.tag}
+        </span>
+
+        <button
+          type="button"
+          class="favorite-button ${isFavorite ? "is-favorite" : ""}"
+          data-favorite="${product.id}"
+          aria-pressed="${isFavorite}"
+          aria-label="${
+            isFavorite
+              ? `Remover ${product.name} dos favoritos`
+              : `Adicionar ${product.name} aos favoritos`
+          }"
+          title="${
+            isFavorite
+              ? "Remover dos favoritos"
+              : "Adicionar aos favoritos"
+          }"
+        >
+          ${heartIcon(isFavorite)}
+        </button>
+
+        <button
+          type="button"
+          class="quick-view"
+          data-view="${product.id}"
+        >
+          VER DETALHES
+        </button>
+      </div>
+
+      <div class="product-info">
+        <p class="product-category">
+          ${categoryNames[product.category]}
+        </p>
+
+        <div class="product-title-row">
+          <h3 class="product-title">
+            ${product.name}
+          </h3>
+
+          <span class="product-price">
+            ${money(product.price)}
+          </span>
+        </div>
+
+        <p class="product-description">
+          ${product.description}
+        </p>
+
+        <button
+          type="button"
+          class="add-button"
+          data-choose="${product.id}"
+        >
+          ESCOLHER ${
+            product.category === "acessorios"
+              ? "PEÇA"
+              : "TAMANHO"
+          } +
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+// ==========================================
+// MOSTRAR, PESQUISAR E FILTRAR
+// ==========================================
+
+function renderProducts() {
+  const query = searchInput.value
+    .trim()
+    .toLocaleLowerCase("pt-BR");
+
+  const list = products.filter(product => {
+    const matchesCategory =
+      activeCategory === "todos" ||
+      product.category === activeCategory;
+
+    const searchableText = `
+      ${product.name}
+      ${product.description}
+      ${categoryNames[product.category]}
+    `.toLocaleLowerCase("pt-BR");
+
+    return (
+      matchesCategory &&
+      searchableText.includes(query)
+    );
+  });
+
+  if (sortSelect.value === "low") {
+    list.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortSelect.value === "high") {
+    list.sort((a, b) => b.price - a.price);
+  }
+
+  if (sortSelect.value === "name") {
+    list.sort((a, b) =>
+      a.name.localeCompare(b.name, "pt-BR")
+    );
+  }
+
+  productGrid.innerHTML = list.map(productCard).join("");
+
+  resultCount.textContent =
+    `${list.length} ${
+      list.length === 1
+        ? "peça encontrada"
+        : "peças encontradas"
+    }`;
+
+  emptyState.hidden = list.length !== 0;
+}
+
+// ==========================================
+// FAVORITAR E DESFAVORITAR
+// ==========================================
+
+function toggleFavorite(id, button) {
+  const productId = Number(id);
+
+  if (favorites.has(productId)) {
+    favorites.delete(productId);
+    showToast("Removido dos favoritos.");
+  } else {
+    favorites.add(productId);
+    showToast("Adicionado aos favoritos.");
+  }
+
+  const isFavorite = favorites.has(productId);
+  const product = products.find(item => item.id === productId);
+
+  // Atualiza o próprio botão sem recriar o catálogo.
+  if (button && product) {
+    button.classList.toggle("is-favorite", isFavorite);
+
+    button.setAttribute(
+      "aria-pressed",
+      String(isFavorite)
+    );
+
+    button.setAttribute(
+      "aria-label",
+      isFavorite
+        ? `Remover ${product.name} dos favoritos`
+        : `Adicionar ${product.name} aos favoritos`
+    );
+
+    button.title = isFavorite
+      ? "Remover dos favoritos"
+      : "Adicionar aos favoritos";
+
+    button.innerHTML = heartIcon(isFavorite);
+  }
+
+  renderFavorites();
+}
+
+function renderFavorites() {
+  document.querySelector("#favoritesCount")
+    .textContent = favorites.size;
+
+  document.querySelector("#favoritesDrawerCount")
+    .textContent = `(${favorites.size})`;
+
+  const selected = products.filter(product =>
+    favorites.has(product.id)
+  );
+
+  favoritesItems.innerHTML = selected.map(product => `
+    <article class="cart-item favorite-item">
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        onerror="this.onerror=null;this.src='https://placehold.co/200x250/f0efe9/222222?text=VERTICE';"
+      >
+
+      <div>
+        <h3>${product.name}</h3>
+        <p>${money(product.price)}</p>
+
+        <button
+          type="button"
+          class="add-button"
+          data-choose="${product.id}"
+        >
+          ESCOLHER PEÇA
+        </button>
+
+        <button
+          type="button"
+          class="remove-item"
+          data-unfavorite="${product.id}"
+        >
+          REMOVER DOS FAVORITOS
+        </button>
+      </div>
+    </article>
+  `).join("") || `
+    <p class="cart-empty">
+      Você ainda não tem favoritos.<br>
+      Toque no coração de uma peça para salvá-la.
+    </p>
+  `;
+}
+
+function openFavorites() {
+  closeCart(false);
+
+  lastDrawerTrigger = document.activeElement;
+
+  renderFavorites();
+
+  favoritesDrawer.inert = false;
+  favoritesDrawer.classList.add("open");
+  favoritesDrawer.setAttribute("aria-hidden", "false");
+
+  overlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  document.querySelector("#favoritesClose").focus();
+}
+
+function closeFavorites(restoreFocus = true) {
+  const wasOpen = favoritesDrawer.classList.contains("open");
+
+  favoritesDrawer.classList.remove("open");
+  favoritesDrawer.inert = true;
+  favoritesDrawer.setAttribute("aria-hidden", "true");
+
+  if (!cartDrawer.classList.contains("open")) {
+    overlay.classList.remove("visible");
+    document.body.style.overflow = "";
+  }
+
+  if (wasOpen && restoreFocus && lastDrawerTrigger) {
+    lastDrawerTrigger.focus();
+  }
+}
+
+document.querySelector(".favorites-open")
+  .addEventListener("click", openFavorites);
+
+document.querySelector("#favoritesClose")
+  .addEventListener("click", () => {
+    closeFavorites();
+  });
+
+favoritesItems.addEventListener("click", event => {
+  const remove = event.target.closest("[data-unfavorite]");
+  const choose = event.target.closest("[data-choose]");
+
+  if (remove) {
+    favorites.delete(Number(remove.dataset.unfavorite));
+    renderFavorites();
+    renderProducts();
+    return;
+  }
+
+  if (choose) {
+    openProduct(choose.dataset.choose);
+  }
+});
+
+// ==========================================
+// CARRINHO
+// ==========================================
+
+function addToCart(id, size) {
+  const product = products.find(
+    item => item.id === Number(id)
+  );
+
+  if (!product) return;
+
+  if (!sizesFor(product).includes(size)) {
+    showToast("Escolha um tamanho.");
+    return;
+  }
+
+  const existing = cart.find(
+    item =>
+      item.id === product.id &&
+      item.size === size
+  );
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      ...product,
+      size,
+      key: `${product.id}-${size}`,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+
+  showToast(
+    `${product.name} (${size}) adicionada à sacola.`
+  );
+}
+
+function renderCart() {
+  const count = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
+  cartCount.textContent = count;
+  drawerCount.textContent = `(${count})`;
+  cartTotal.textContent = money(cartTotalValue());
+
+  if (!cart.length) {
+    cartItems.innerHTML = `
+      <p class="cart-empty">
+        Sua sacola está vazia.<br>
+        Encontre sua próxima peça.
+      </p>
+    `;
+    return;
+  }
+
+  cartItems.innerHTML = cart.map(item => `
+    <article class="cart-item">
+      <img
+        src="${item.image}"
+        alt="${item.name}"
+        onerror="this.onerror=null;this.src='https://placehold.co/200x250/f0efe9/222222?text=VERTICE';"
+      >
+
+      <div>
+        <h3>${item.name}</h3>
+
+        <p>
+          Tamanho: ${item.size} · ${money(item.price)}
+        </p>
+
+        <div class="quantity-controls">
+          <button
+            type="button"
+            data-quantity="${item.key}"
+            data-change="-1"
+            aria-label="Diminuir quantidade"
+          >
+            −
+          </button>
+
+          <span>${item.quantity}</span>
+
+          <button
+            type="button"
+            data-quantity="${item.key}"
+            data-change="1"
+            aria-label="Aumentar quantidade"
+          >
+            +
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="remove-item"
+          data-remove="${item.key}"
+        >
+          REMOVER
+        </button>
+      </div>
+
+      <span class="cart-item-price">
+        ${money(item.price * item.quantity)}
+      </span>
+    </article>
+  `).join("");
+}
+
+function openCart() {
+  closeFavorites(false);
+
+  lastDrawerTrigger = document.activeElement;
+
+  cartDrawer.inert = false;
+  cartDrawer.classList.add("open");
+  cartDrawer.setAttribute("aria-hidden", "false");
+
+  overlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  document.querySelector("#cartClose").focus();
+}
+
+function closeCart(restoreFocus = true) {
+  const wasOpen = cartDrawer.classList.contains("open");
+
+  cartDrawer.inert = true;
+  cartDrawer.classList.remove("open");
+  cartDrawer.setAttribute("aria-hidden", "true");
+
+  overlay.classList.remove("visible");
+  document.body.style.overflow = "";
+
+  if (wasOpen && restoreFocus && lastDrawerTrigger) {
+    lastDrawerTrigger.focus();
+  }
+}
+
+document.querySelectorAll(".cart-open")
+  .forEach(button => {
+    button.addEventListener("click", openCart);
+  });
+
+document.querySelector("#cartClose")
+  .addEventListener("click", () => {
+    closeCart();
+  });
+
+overlay.addEventListener("click", () => {
+  closeCart();
+  closeFavorites();
+});
+
+cartItems.addEventListener("click", event => {
+  const quantityButton =
+    event.target.closest("[data-quantity]");
+
+  const removeButton =
+    event.target.closest("[data-remove]");
+
+  if (quantityButton) {
+    const item = cart.find(
+      product =>
+        product.key === quantityButton.dataset.quantity
+    );
+
+    if (!item) return;
+
+    item.quantity += Number(
+      quantityButton.dataset.change
+    );
+
+    if (item.quantity <= 0) {
+      cart = cart.filter(product =>
+        product.key !== item.key
+      );
+    }
+
+    renderCart();
+  }
+
+  if (removeButton) {
+    cart = cart.filter(
+      product =>
+        product.key !== removeButton.dataset.remove
+    );
+
+    renderCart();
+    showToast("Produto removido da sacola.");
+  }
+});
+
+// ==========================================
+// DETALHES E ESCOLHA DE TAMANHO
+// ==========================================
+
+function openProduct(id) {
+  const product = products.find(
+    item => item.id === Number(id)
+  );
+
+  if (!product) return;
+
+  dialogContent.innerHTML = `
+    <div class="dialog-layout">
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x800/f0efe9/222222?text=VERTICE';"
+      >
+
+      <div class="dialog-info">
+        <p class="eyebrow">
+          ${categoryNames[product.category]} / VÉRTICE
+        </p>
+
+        <h2>${product.name}</h2>
+
+        <div class="dialog-price">
+          ${money(product.price)}
+        </div>
+
+        <p>${product.description}</p>
+
+        <p>
+          Uma peça pensada para combinar com diferentes
+          momentos e expressar seu estilo pessoal.
+        </p>
+
+        <label
+          class="size-label"
+          for="productSize"
+        >
+          ${
+            product.category === "acessorios"
+              ? "Tamanho único"
+              : "Escolha seu tamanho"
+          }
+        </label>
+
+        <select
+          id="productSize"
+          class="size-select"
+          required
+        >
+          <option value="">Selecione</option>
+
+          ${sizesFor(product).map(size => `
+            <option value="${size}">
+              ${size}
+            </option>
+          `).join("")}
+        </select>
+
+        <button
+          type="button"
+          class="add-button"
+          data-add="${product.id}"
+        >
+          ADICIONAR À SACOLA +
+        </button>
+      </div>
+    </div>
+  `;
+
+  closeFavorites(false);
+  productDialog.showModal();
+}
+
+productGrid.addEventListener("click", event => {
+  const favoriteButton =
+    event.target.closest("[data-favorite]");
+
+  const chooseButton =
+    event.target.closest("[data-choose]");
+
+  const viewButton =
+    event.target.closest("[data-view]");
+
+  // O coração é tratado antes da abertura dos detalhes.
+  if (favoriteButton) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    toggleFavorite(
+      favoriteButton.dataset.favorite,
+      favoriteButton
+    );
+
+    return;
+  }
+
+  if (chooseButton) {
+    event.preventDefault();
+    openProduct(chooseButton.dataset.choose);
+    return;
+  }
+
+  if (viewButton) {
+    openProduct(viewButton.dataset.view);
+  }
+});
+
+productGrid.addEventListener("keydown", event => {
+  if (
+    (event.key === "Enter" || event.key === " ") &&
+    event.target.matches(".product-image[data-view]")
+  ) {
+    event.preventDefault();
+    openProduct(event.target.dataset.view);
+  }
+});
+
+document.querySelector("#dialogClose")
+  .addEventListener("click", () => {
+    productDialog.close();
+  });
+
+productDialog.addEventListener("click", event => {
+  if (event.target === productDialog) {
+    productDialog.close();
+  }
+});
+
+dialogContent.addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+
+  if (!button) return;
+
+  const sizeSelect = document.querySelector("#productSize");
+
+  if (!sizeSelect.reportValidity()) return;
+
+  addToCart(
+    button.dataset.add,
+    sizeSelect.value
+  );
+
+  productDialog.close();
+});
+
+// ==========================================
+// FILTROS SOMENTE POR TIPO DE PEÇA
+// ==========================================
+
+document.querySelectorAll(
+  '[data-category="feminino"], ' +
+  '[data-category="masculino"]'
+).forEach(button => {
+  button.remove();
+});
+
+filters.addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+
+  if (!button) return;
+
+  activeCategory = button.dataset.category;
+
+  filters.querySelectorAll(".filter")
+    .forEach(item => {
+      item.classList.toggle(
+        "active",
+        item === button
+      );
+    });
+
+  renderProducts();
+});
+
+searchInput.addEventListener("input", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+
+document.querySelector("#searchToggle")
+  .addEventListener("click", () => {
+    document.querySelector("#colecao")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+    searchInput.focus({
+      preventScroll: true
+    });
+  });
+
+// ==========================================
+// MENU PARA CELULAR
+// ==========================================
+
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("open");
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    String(mainNav.classList.contains("open"))
+  );
+});
+
+mainNav.querySelectorAll("a")
+  .forEach(link => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+// ==========================================
+// NEWSLETTER DEMONSTRATIVA
+// ==========================================
+
+document.querySelector("#newsletterForm")
+  .addEventListener("submit", event => {
+    event.preventDefault();
+
+    const email = document.querySelector("#emailInput")
+      .value.trim();
+
+    if (!email) return;
+
+    document.querySelector("#newsletterMessage")
+      .textContent =
+        "Inscrição demonstrativa realizada! " +
+        "Obrigado por acompanhar a VÉRTICE.";
+
+    event.target.reset();
+  });
+
+// ==========================================
+// NAVEGAÇÃO POR TECLADO
+// ==========================================
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCart();
+    closeFavorites();
+  }
+
+  if (event.key !== "Tab") return;
+
+  const drawer = document.querySelector(".cart-drawer.open");
+
+  if (!drawer) return;
+
+  const controls = [
+    ...drawer.querySelectorAll(
+      "button:not([disabled]), a[href], input, select"
+    )
+  ];
+
+  const first = controls[0];
+  const last = controls.at(-1);
+
+  if (!first || !last) return;
+
+  if (
+    event.shiftKey &&
+    document.activeElement === first
+  ) {
+    event.preventDefault();
+    last.focus();
+  } else if (
+    !event.shiftKey &&
+    document.activeElement === last
+  ) {
+    event.preventDefault();
+    first.focus();
+  }
+});
+
+// ==========================================
+// CHECKOUT DEMONSTRATIVO
+// ==========================================
+
+function renderPayment() {
+  const method = checkoutForm.elements.pagamento.value;
+
+  if (method === "cartao") {
+    paymentFields.innerHTML = `
+      <p class="field-note">
+        Cartão fictício. Use o número
+        0000 0000 0000 0000 e CVV 000.
+        Não use um cartão real.
+      </p>
+
+      <div class="form-grid">
+        <label>
+          Nome impresso
+          <input
+            name="titular"
+            required
+            autocomplete="off"
+            placeholder="CLIENTE EXEMPLO"
+          >
+        </label>
+
+        <label>
+          Número de teste
+          <input
+            name="cartao"
+            required
+            inputmode="numeric"
+            autocomplete="off"
+            pattern="0{4} ?0{4} ?0{4} ?0{4}"
+            value="0000 0000 0000 0000"
+            maxlength="19"
+          >
+        </label>
+
+        <label>
+          Validade de teste
+          <input
+            name="validade"
+            required
+            inputmode="numeric"
+            autocomplete="off"
+            pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+            placeholder="12/30"
+            maxlength="5"
+          >
+        </label>
+
+        <label>
+          CVV fictício
+          <input
+            name="cvv"
+            required
+            inputmode="numeric"
+            autocomplete="off"
+            pattern="000"
+            value="000"
+            maxlength="3"
+          >
+        </label>
+
+        <label>
+          Parcelas
+          <select name="parcelas">
+            <option value="1">
+              1× de ${money(cartTotalValue())}
+            </option>
+
+            <option value="2">
+              2× de ${money(cartTotalValue() / 2)}
+              (simulação sem juros)
+            </option>
+
+            <option value="3">
+              3× de ${money(cartTotalValue() / 3)}
+              (simulação sem juros)
+            </option>
+          </select>
+        </label>
+      </div>
+    `;
+
+    return;
+  }
+
+  paymentFields.innerHTML = `
+    <p class="field-note">
+      ${
+        method === "pix"
+          ? "Um QR Code fictício será exibido ao finalizar. Ele contém apenas um texto de demonstração."
+          : "Um boleto fictício, sem validade bancária, será exibido ao finalizar."
+      }
+    </p>
+  `;
+}
+
+checkoutForm.elements.pagamento.forEach(radio => {
+  radio.addEventListener("change", renderPayment);
+});
+
+function clearCheckout() {
+  checkoutForm.reset();
+  paymentFields.replaceChildren();
+  orderResult.replaceChildren();
+  orderResult.hidden = true;
+}
+
+document.querySelector("#checkoutClose")
+  .addEventListener("click", () => {
+    checkoutDialog.close();
+  });
+
+checkoutDialog.addEventListener("close", clearCheckout);
+
+document.querySelector("#checkoutButton")
+  .addEventListener("click", () => {
+    if (!cart.length) {
+      showToast("Adicione uma peça antes de finalizar.");
+      return;
+    }
+
+    closeCart(false);
+
+    checkoutForm.reset();
+    checkoutForm.hidden = false;
+
+    orderResult.hidden = true;
+    orderResult.replaceChildren();
+
+    citySelect.innerHTML = `
+      <option value="">
+        Selecione primeiro o estado
+      </option>
+    `;
+
+    citySelect.disabled = true;
+
+    document.querySelector("#locationStatus")
+      .textContent = "";
+
+    renderPayment();
+
+    document.querySelector("#checkoutSummary")
+      .textContent = cart.map(item =>
+        `${item.quantity} × ${item.name} (${item.size})`
+      ).join(" · ") +
+      ` — Total: ${money(cartTotalValue())}` +
+      " | Frete: grátis (simulação)";
+
+    checkoutDialog.showModal();
+  });
+
+// ==========================================
+// ESTADOS E CIDADES
+// ==========================================
+
+function loadLocations() {
+  if (!locations.length) {
+    document.querySelector("#locationStatus")
+      .textContent =
+        "Base de municípios indisponível. Confira se " +
+        "data/localidades.js está na pasta do projeto " +
+        "e recarregue.";
+
+    return;
+  }
+
+  locations
+    .sort((a, b) =>
+      a.nome.localeCompare(b.nome, "pt-BR")
+    )
+    .forEach(state => {
+      stateSelect.add(
+        new Option(state.nome, state.sigla)
+      );
+    });
+}
+
+stateSelect.addEventListener("change", () => {
+  citySelect.innerHTML = `
+    <option value="">
+      Selecione a cidade
+    </option>
+  `;
+
+  const state = locations.find(
+    item => item.sigla === stateSelect.value
+  );
+
+  citySelect.disabled = !state;
+
+  if (state) {
+    state.cidades.forEach(city => {
+      citySelect.add(
+        new Option(city, city)
+      );
+    });
+  }
+
+  document.querySelector("#locationStatus")
+    .textContent = state
+      ? `${state.cidades.length} municípios disponíveis em ${state.nome}.`
+      : "";
+});
+
+// ==========================================
+// FINALIZAR PEDIDO FICTÍCIO
+// ==========================================
+
+checkoutForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (
+    !checkoutForm.reportValidity() ||
+    !cart.length
+  ) {
+    return;
+  }
+
+  const form = new FormData(checkoutForm);
+  const method = form.get("pagamento");
+  const total = cartTotalValue();
+
+  const code =
+    `DEMO-${Date.now().toString(36).toUpperCase()}`;
+
+  orderResult.replaceChildren();
+
+  const title = document.createElement("h3");
+  title.textContent = "Pedido fictício criado!";
+  orderResult.append(title);
+
+  const info = document.createElement("p");
+
+  info.textContent =
+    `${code} · Total: ${money(total)} · ` +
+    `Entrega: ${form.get("cidade")} / ` +
+    `${form.get("estado")}.`;
+
+  orderResult.append(info);
+
+  const note = document.createElement("p");
+  note.className = "simulation-note";
+
+  note.textContent =
+    "SIMULAÇÃO PARA APRESENTAÇÃO — nenhum " +
+    "pagamento, envio ou pedido real foi realizado.";
+
+  orderResult.append(note);
+
+  if (method === "pix") {
+    const qr = document.createElement("img");
+
+    qr.src = "images/pix-demo.png";
+    qr.className = "pix-qr";
+
+    qr.alt =
+      "QR Code com o texto VÉRTICE DEMONSTRAÇÃO " +
+      "SEM VALOR DE PAGAMENTO";
+
+    orderResult.append(qr);
+
+    const text = document.createElement("p");
+
+    text.textContent =
+      "Pix fictício — QR Code apenas ilustrativo, " +
+      "sem chave Pix e sem valor de pagamento.";
+
+    orderResult.append(text);
+  } else if (method === "cartao") {
+    const text = document.createElement("p");
+
+    text.textContent =
+      "Cartão de teste •••• 0000 · " +
+      `${form.get("parcelas")} parcela(s). ` +
+      "Aprovação simulada. Nenhuma transação processada.";
+
+    orderResult.append(text);
+  } else {
+    const slip = document.createElement("div");
+    slip.className = "demo-boleto";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "VÉRTICE / BOLETO FICTÍCIO";
+
+    const line = document.createElement("p");
+
+    line.textContent =
+      "DEMO 00000.00000 00000.000000 " +
+      "00000.000000 0 — SEM VALIDADE";
+
+    const details = document.createElement("p");
+
+    details.textContent =
+      `Valor ilustrativo: ${money(total)} · ` +
+      "Beneficiário fictício: VÉRTICE · Não pagável.";
+
+    const bars = document.createElement("div");
+    bars.className = "demo-bars";
+    bars.setAttribute("aria-hidden", "true");
+
+    slip.append(
+      heading,
+      line,
+      details,
+      bars
+    );
+
+    orderResult.append(slip);
+  }
+
+  const finish = document.createElement("button");
+
+  finish.type = "button";
+  finish.className = "button button-dark";
+  finish.textContent = "VOLTAR À COLEÇÃO ↗";
+
+  finish.addEventListener("click", () => {
+    checkoutDialog.close();
+  });
+
+  orderResult.append(finish);
+
+  checkoutForm.reset();
+  paymentFields.replaceChildren();
+
+  checkoutForm.hidden = true;
+  orderResult.hidden = false;
+
+  cart = [];
+
+  renderCart();
+
+  checkoutDialog.scrollTop = 0;
+  finish.focus();
+});
+
+// ==========================================
+// MISTURAR PRODUTOS UMA VEZ AO CARREGAR
+// ==========================================
+
+for (let i = products.length - 1; i > 0; i--) {
+  const j = Math.floor(
+    Math.random() * (i + 1)
+  );
+
+  [products[i], products[j]] = [
+    products[j],
+    products[i]
+  ];
+}
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+
+renderProducts();
+renderCart();
+renderFavorites();
+loadLocations();
+
+// ==========================================
+// CORREÇÃO DAS IMAGENS DAS 22 PEÇAS
+// Cole no FINAL do script.js.
+// Não precisa baixar ou criar arquivos de fotos.
+// ==========================================
+
+(() => {
+  const imagensCorretas = {
+    // Camiseta Boxy
+    1: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8344/camiseta-boxy-oversized-ever-off-white.jpg?ims=900x1200",
+
+    // Moletom Essential
+    2: "https://monteleste.cdn.magazord.com.br/img/2023/04/produto/1311/monteleste0478.jpg?ims=900x1200",
+
+    // Camiseta Urban
+    3: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8364/camiseta-oversized-estampada-warrior-cinza-estonada.jpg?ims=900x1200",
+
+    // Boné
+    4: "https://monteleste.cdn.magazord.com.br/img/2022/08/produto/688/acessorios-bone-dadhat-monte-leste-preto-p-1632083289345.jpg?ims=900x1200",
+
+    // Calça Cargo
+    5: "https://monteleste.cdn.magazord.com.br/img/2023/07/produto/1561/monte-leste0435-2.jpg?ims=900x1200",
+
+    // Moletom Cloud
+    6: "https://monteleste.cdn.magazord.com.br/img/2024/07/produto/2547/monte-leste0207.jpg?ims=900x1200",
+
+    // Bolsa Crossbody
+    7: "https://monteleste.cdn.magazord.com.br/img/2022/08/produto/777/acessorios-shoulder-bag-monte-leste-preta-p-1619616041764.jpg?ims=900x1200",
+
+    // Camiseta Graphic
+    8: "https://monteleste.cdn.magazord.com.br/img/2025/02/produto/3523/monte-leste-0405.jpg?ims=900x1200",
+
+    // Camiseta Listrada
+    9: "https://monteleste.cdn.magazord.com.br/img/2025/09/produto/5359/monte-leste-0018.jpg?ims=900x1200",
+
+    // Camiseta Raglan
+    10: "https://monteleste.cdn.magazord.com.br/img/2025/09/produto/6135/monte-leste-0690-1-certo.png?ims=900x1200",
+
+    // Camiseta Ringer Bordô
+    11: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8310/camiseta-ringer-boxy-oversized-fading-brodo-jpg.jpg?ims=900x1200",
+
+    // Baby Tee Cinza
+    12: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8431/baby-tee-kenya-cinza-estonado-jpg.jpg?ims=900x1200",
+
+    // Calça Jeans Baggy
+    13: "https://monteleste.cdn.magazord.com.br/img/2026/07/produto/8211/monte-leste-0196-1.jpg?ims=900x1200",
+
+    // Calça Baggy Marrom
+    14: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8338/calc-a-baggy-oversized-tech-marrom.jpg?ims=900x1200",
+
+    // Shorts Curve Verde
+    15: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8413/shorts-bermuda-d-a-gua-curve-verde-jpg.jpg?ims=900x1200",
+
+    // Bermuda Camuflada
+    16: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8801/bermudacamufladapessoa.png?ims=900x1200",
+
+    // Minissaia Estampada
+    17: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8422/mini-saia-castello-off-white.jpg?ims=900x1200",
+
+    // Conjunto Moletom
+    18: "https://monteleste.cdn.magazord.com.br/img/2025/07/produto/4859/ml-lookbook-inverno-63.jpg?ims=900x1200",
+
+    // Polo Cropped Listrada
+    20: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8438/camiseta-polo-cropped-oversized-listrada-preto.jpg?ims=900x1200",
+
+    // Microshorts Cinza
+    21: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8418/microshorts-moletom-feminino-less-cinza-estonado.jpg?ims=900x1200",
+
+    // Minissaia Camuflada
+    23: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8423/mini-saia-camuflada-areia.jpg?ims=900x1200",
+
+    // Baby Tee Rosa
+    24: "https://monteleste.cdn.magazord.com.br/img/2026/09/produto/8432/baby-tee-kenya-rosa-estonado.jpg?ims=900x1200"
+  };
+
+  // Corrige as fotos no catálogo.
+  products.forEach(produto => {
+    if (imagensCorretas[produto.id]) {
+      produto.image = imagensCorretas[produto.id];
+    }
+  });
+
+  // Corrige também itens que já estejam na sacola.
+  cart.forEach(item => {
+    if (imagensCorretas[item.id]) {
+      item.image = imagensCorretas[item.id];
+    }
+  });
+
+  // Atualiza a tela mantendo as funções existentes.
+  renderProducts();
+  renderCart();
+  renderFavorites();
+})();
